@@ -1,5 +1,8 @@
 @import "./normalize";
 @import "./variables";
-@import "./components/App/App";
-@import "./components/CardContainer/CardContainer.scss";
+@import "./components/App/App.scss";
 @import "./components/Card/Card.scss";
+@import "./components/CardContainer/CardContainer.scss";
+@import "./components/Controls/Controls.scss";
+@import "./components/Header/Header.scss";
+@import "./components/ScrollText/ScrollText.scss";

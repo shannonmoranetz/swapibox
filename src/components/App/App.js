@@ -10,27 +10,34 @@ export default class App extends Component {
     super();
     this.state = {
       people: [],
-      planets: []
+      planets: [],
+      vehicles: []
     }
   }
 
   componentDidMount = () => {
+    this.retrieveData();
+  }
+  
+  retrieveData = () => {
     this.fetchPeople();
     this.fetchPlanets();
+    this.fetchVehicles();
   }
 
-  // peoples fetch
+  // PEOPLE
+
   fetchPeople = async () => {
-    let fetchedData = [];
+    let fetchedPeopleData = [];
     for (let i = 1; i < 10; i++) {
       let url = `https://swapi.co/api/people/?page=${i}`
       const response = await fetch(url);
       const result = await response.json();
-      fetchedData.push(...result.results);
+      fetchedPeopleData.push(...result.results);
     }
-    const checkedHomeworlds = await this.fetchHomeWorld(fetchedData);
-    const checkedSpecies = await this.fetchSpecies(checkedHomeworlds);
-    this.setState({ people: checkedSpecies })
+    const homeWorldData = await this.fetchHomeWorld(fetchedPeopleData);
+    const completePeopleData = await this.fetchSpecies(homeWorldData);
+    this.setState({ people: completePeopleData })
   }
 
   fetchHomeWorld = (fetchedPeople) => {
@@ -55,14 +62,7 @@ export default class App extends Component {
     return Promise.all(unresolvedPromises);
   }
 
-
-
-
-
-
-
-
-  // planets fetch
+  // PLANETS
   
   fetchPlanets = async () => {
     let fetchedPlanetData = [];
@@ -72,44 +72,47 @@ export default class App extends Component {
       const result = await response.json();
       fetchedPlanetData.push(...result.results);
     }
-    const checkedPlanets = await this.fetchResidents(fetchedPlanetData);
-    this.setState({ planets: checkedPlanets });
+    const planetsData = await this.fetchResidents(fetchedPlanetData);
+    this.setState({ planets: planetsData });
   }
-
-
-
 
   fetchResidents = (planets) => {
     const unresolvedPromises = planets.map(async planet => {
       if (planet.residents.length > 0) {
-        let newArray = [];
+        let fetchedNameData = [];
         for (let i = 0; i < planet.residents.length; i++) {
           const response = await fetch(planet.residents[i])
           const result = await response.json()
-          newArray.push(result.name);
+          fetchedNameData.push(result.name);
         }
-        return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: newArray})
+        return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: fetchedNameData})
         } else {
         return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: 'None.'})
         }
-
       })
     return Promise.all(unresolvedPromises)
   }
 
-  pushMultipleResidents = (residents) => {
-    console.log(residents)
-    return residents;
-    // this.setState({ planets: checkedPlanets });
+  // VEHICLES
 
+  fetchVehicles = async () => {
+    let fetchedVehicleData = [];
+    for (let i = 1; i < 5; i++) {
+      let url = `https://swapi.co/api/vehicles/?page=${i}`
+      const response = await fetch(url);
+      const result = await response.json();
+      fetchedVehicleData.push(...result.results);
+    }
+    const checkedVehicles = await this.fetchVehicleData(fetchedVehicleData);
+    this.setState({ vehicles: checkedVehicles })
   }
 
-
-
-
-
-
-  // vehicles fetch
+  fetchVehicleData = async (vehicles) => {
+    const unresolvedPromises = vehicles.map(async vehicle => {
+    return ({ name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers})
+    })
+    return Promise.all(unresolvedPromises);
+  }
 
   render() {
     return (

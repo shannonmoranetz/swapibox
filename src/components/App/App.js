@@ -9,6 +9,7 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      crawls: [],
       people: [],
       planets: [],
       vehicles: []
@@ -20,21 +21,39 @@ export default class App extends Component {
   }
   
   retrieveData = () => {
+    this.fetchScrollText();
     this.fetchPeople();
     this.fetchPlanets();
     this.fetchVehicles();
+  }
+
+  // SCROLLTEXT
+
+  fetchScrollText = async () => {
+    let fetchedScrollTextData = [];
+    let url = 'https://swapi.co/api/films/'
+    const response = await fetch(url);
+    const result = await response.json();
+    fetchedScrollTextData.push(...result.results);
+    const crawlData = await this.fetchScrollTextData(fetchedScrollTextData);
+    this.setState({ crawls: crawlData })
+  }
+
+  fetchScrollTextData = async (films) => {
+    const unresolvedPromises = films.map(async film => {
+    return ({ title: film.title, date: film.release_date, crawl: film.opening_crawl })
+    })
+    return Promise.all(unresolvedPromises);
   }
 
   // PEOPLE
 
   fetchPeople = async () => {
     let fetchedPeopleData = [];
-    for (let i = 1; i < 10; i++) {
-      let url = `https://swapi.co/api/people/?page=${i}`
-      const response = await fetch(url);
-      const result = await response.json();
-      fetchedPeopleData.push(...result.results);
-    }
+    let url = `https://swapi.co/api/people/?page=1`
+    const response = await fetch(url);
+    const result = await response.json();
+    fetchedPeopleData.push(...result.results);
     const homeWorldData = await this.fetchHomeWorld(fetchedPeopleData);
     const completePeopleData = await this.fetchSpecies(homeWorldData);
     this.setState({ people: completePeopleData })
@@ -52,26 +71,24 @@ export default class App extends Component {
   fetchSpecies = (fetchedPeople) => {
     const unresolvedPromises = fetchedPeople.map(async person => {
       if (person.species.length > 0) {
-        const response = await fetch(person.species[0])
+        const response = await fetch(person.species[0]);
         const result = await response.json();
         return ({ person: person.name, homeworld: person.homeworld, population: person.population, species: result.name, language: result.language});
       } else {
         return ({ person: person.name, homeworld: person.homeworld, population: person.population, species: 'Unknown', language: 'Unknown'});
       }
     })
-    return Promise.all(unresolvedPromises);
-  }
+  return Promise.all(unresolvedPromises);
+}
 
   // PLANETS
   
   fetchPlanets = async () => {
     let fetchedPlanetData = [];
-    for (let i = 1; i < 8; i++) {
-      let url = `https://swapi.co/api/planets/?page=${i}`
-      const response = await fetch(url);
-      const result = await response.json();
-      fetchedPlanetData.push(...result.results);
-    }
+    let url = `https://swapi.co/api/planets/?page=1`
+    const response = await fetch(url);
+    const result = await response.json();
+    fetchedPlanetData.push(...result.results);
     const planetsData = await this.fetchResidents(fetchedPlanetData);
     this.setState({ planets: planetsData });
   }
@@ -79,13 +96,8 @@ export default class App extends Component {
   fetchResidents = (planets) => {
     const unresolvedPromises = planets.map(async planet => {
       if (planet.residents.length > 0) {
-        let fetchedNameData = [];
-        for (let i = 0; i < planet.residents.length; i++) {
-          const response = await fetch(planet.residents[i])
-          const result = await response.json()
-          fetchedNameData.push(result.name);
-        }
-        return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: fetchedNameData})
+        const addedResidents = await this.addResidents(planet.residents);
+        return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: addedResidents})
         } else {
         return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: 'None.'})
         }
@@ -93,18 +105,26 @@ export default class App extends Component {
     return Promise.all(unresolvedPromises)
   }
 
+  addResidents = (links) => {
+    const unresolvedPromises = links.map(async link => {
+      const response = await fetch(link);
+      const result = await response.json();
+      console.log(result.name)
+      return result.name;
+    })
+    return Promise.all(unresolvedPromises)
+  }
+
   // VEHICLES
 
   fetchVehicles = async () => {
     let fetchedVehicleData = [];
-    for (let i = 1; i < 5; i++) {
-      let url = `https://swapi.co/api/vehicles/?page=${i}`
-      const response = await fetch(url);
-      const result = await response.json();
-      fetchedVehicleData.push(...result.results);
-    }
-    const checkedVehicles = await this.fetchVehicleData(fetchedVehicleData);
-    this.setState({ vehicles: checkedVehicles })
+    let url = `https://swapi.co/api/vehicles/?page=1`
+    const response = await fetch(url);
+    const result = await response.json();
+    fetchedVehicleData.push(...result.results);
+    const VehicleData = await this.fetchVehicleData(fetchedVehicleData);
+    this.setState({ vehicles: VehicleData })
   }
 
   fetchVehicleData = async (vehicles) => {

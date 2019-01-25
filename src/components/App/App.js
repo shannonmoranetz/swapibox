@@ -22,7 +22,7 @@ export default class App extends Component {
   }
   
   populateScrollText = async () => {
-    let randomCrawlNum = Math.floor(Math.random() * 7) + 1;
+    let randomCrawlNum = Math.floor(Math.random() * 6) + 1;
     const randomCrawl = await fetchScrollText();
     this.setState({ crawl: await randomCrawl[randomCrawlNum].crawl })
   }
@@ -51,16 +51,25 @@ export default class App extends Component {
     return this.state.vehicles;
   }
 
+  retrieveCategory = (category) => {
+    if (category === 'people') {
+      this.populatePeople();
+    }
+    else if (category === 'planets') {
+      this.populatePlanets();
+    }
+    else {
+      this.populateVehicles();
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h1>App</h1>
-        <button className="people-button" onClick={this.populatePeople}>People</button>
-        <button className="planets-button" onClick={this.populatePlanets}>Planets</button>
-        <button className="vehicles-button" onClick={this.populateVehicles}>Vehicles</button>
         <Header />
         <ScrollText />
-        <Controls />
+        <Controls retrieveCategory={this.retrieveCategory}/>
         <CardContainer />
         <p>{this.state.crawl}</p>
       </div>

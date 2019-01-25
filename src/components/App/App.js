@@ -63,18 +63,6 @@ export default class App extends Component {
     }
   }
 
-  // selectCardsToPass = async (category) => {
-  //   if (category === 'people') {
-  //     this.populatePeople();
-  //   } else if (category === 'planets') {
-  //     this.populatePlanets();
-  //   } else if (category === 'vehicles') {
-  //     this.populateVehicles();
-  //   } else {
-  //     return [];
-  //   }
-  // }
-
   render() {
     return (
       <div className="App">
@@ -83,7 +71,8 @@ export default class App extends Component {
         <Controls retrieveCategory={this.retrieveCategory}/>
         <CardContainer  people={this.state.people}
                         planets={this.state.planets}
-                        vehicles={this.state.vehicles}/>
+                        vehicles={this.state.vehicles}
+                        category={this.state.category}/>
       </div>
     )
   }

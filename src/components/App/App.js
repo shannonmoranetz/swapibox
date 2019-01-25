@@ -1,66 +1,62 @@
 import React, { Component } from 'react';
 import '../../main.scss';
 import { fetchScrollText, fetchPeople, fetchPlanets, fetchVehicles } from '../../apiCalls';
-import { CardContainer } from '../CardContainer/CardContainer';
 import { Controls } from '../Controls/Controls';
 import { Header } from '../Header/Header';
+import { Loader } from '../Loader/Loader';
 import { ScrollText } from '../ScrollText/ScrollText';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
+      category: '',
       crawl: [],
       people: [],
       planets: [],
       vehicles: [],
-      category: ''
+      dataIsLoaded: null
     }
   }
   
   componentDidMount = () => {
-    this.populateScrollText();
+    this.populateRandomScrollText();
   }
   
-  populateScrollText = async () => {
+  populateRandomScrollText = async () => {
     let randomCrawlNum = Math.floor(Math.random() * 6) + 1;
     const randomCrawl = await fetchScrollText();
     this.setState({ crawl: await randomCrawl[randomCrawlNum] })
   }
   
   populatePeople = async () => {
-    if (this.state.people.length === 0) {
-      console.log('ppl not in state...')
-      this.setState({ people: await fetchPeople() })
-    }
-    return this.state.people;
+    this.setState({ people: await fetchPeople(), dataIsLoaded: true })
   }
   
   populatePlanets = async () => {
-    if (this.state.planets.length === 0) {
-      console.log('planets not in state...')
-      this.setState({ planets: await fetchPlanets() })
-    }
-    return this.state.planets;
+    this.setState({ planets: await fetchPlanets(), dataIsLoaded: true })
   }
   
   populateVehicles = async () => {
-    if (this.state.vehicles.length === 0) {
-      console.log('vehicles not in state...')
-      this.setState({ vehicles: await fetchVehicles() })
-    }
-    return this.state.vehicles;
+    this.setState({ vehicles: await fetchVehicles(), dataIsLoaded: true })
   }
 
   retrieveCategory = (category) => {
-    this.setState({ category: category });
-    if (category === 'people') {
+    this.setState({ category: category});
+    if (category === 'people' && this.state.people.length === 0) {
+      this.updateLoadStatus();
       this.populatePeople();
-    } else if (category === 'planets') {
+    } else if (category === 'planets' && this.state.vehicles.length === 0) {
+      this.updateLoadStatus();
       this.populatePlanets();
-    } else if (category === 'vehicles') {
+    } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
+      this.updateLoadStatus();
       this.populateVehicles();
     }
+  }
+
+  updateLoadStatus = () => {
+    this.setState({ dataIsLoaded: false })
   }
 
   render() {
@@ -68,11 +64,12 @@ export default class App extends Component {
       <div className="App">
         <Header />
         <ScrollText crawl={this.state.crawl}/>
-        <Controls retrieveCategory={this.retrieveCategory}/>
-        <CardContainer  people={this.state.people}
-                        planets={this.state.planets}
-                        vehicles={this.state.vehicles}
-                        category={this.state.category}/>
+        <Controls   retrieveCategory={this.retrieveCategory}/>
+        <Loader     people={this.state.people}
+                    planets={this.state.planets}
+                    vehicles={this.state.vehicles}
+                    category={this.state.category}
+                    dataIsLoaded={this.state.dataIsLoaded} />
       </div>
     )
   }

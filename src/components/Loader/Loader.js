@@ -2,7 +2,7 @@ import React from 'react';
 import { CardContainer } from '../CardContainer/CardContainer';
 import { FavoriteContainer } from '../FavoriteContainer/FavoriteContainer';
 
-export const Loader = ({ people, planets, vehicles, category, dataIsLoaded, viewFavorites }) => {
+export const Loader = ({ people, planets, vehicles, category, dataIsLoaded, viewFavorites, retrieveFavorited }) => {
 
   if (dataIsLoaded === false) {
     return (
@@ -22,7 +22,8 @@ export const Loader = ({ people, planets, vehicles, category, dataIsLoaded, view
       <CardContainer  people={people}
                       planets={planets}
                       vehicles={vehicles}
-                      category={category}/>
+                      category={category}
+                      retrieveFavorited={retrieveFavorited} />
     )
   }
 };

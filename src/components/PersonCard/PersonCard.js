@@ -4,19 +4,24 @@ export class PersonCard extends Component {
   constructor() {
     super();
     this.state = {
-      isFavorited: true
+      isFavorited: false
     }
   }
 
-  // passIsFavorited = () => {
+  checkFavoriteStatus = () => {
+    this.setState({ isFavorited: !this.state.isFavorited }, this.passFavorited(this.props.person))
+  }
 
-  // }
+  passFavorited = (personData) => {
+    console.log(personData)
+    this.props.retrieveFavorited(personData)
+  }
 
   render() {
     let { person } = this.props;
     return(
       <div className="PersonCard">
-        <button className="favorite-person-toggle">favorite</button>
+        <button className="favorite-person-toggle" onClick={this.checkFavoriteStatus}>favorite</button>
         <p className="name">{person.person}</p>
         <p className="homeworld">{person.homeworld}</p>
         <p className="population">{person.population}</p>

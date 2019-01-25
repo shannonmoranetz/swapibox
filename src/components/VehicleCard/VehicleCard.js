@@ -4,7 +4,7 @@ export class VehicleCard extends Component {
   constructor() {
     super();
     this.state = {
-      isFavorited: true
+      isFavorited: false
     }
   }
 

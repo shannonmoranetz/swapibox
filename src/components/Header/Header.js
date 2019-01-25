@@ -3,7 +3,7 @@ import React from 'react';
 export const Header = () => {
   return (
     <div className="Header">
-      <p>im the Header</p>
+      <h1 className="title">SwapiBox</h1>
     </div>
   )
 };

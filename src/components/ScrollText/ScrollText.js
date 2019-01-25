@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const ScrollText = () => {
+export const ScrollText = (props) => {
   return (
     <div className="ScrollText">
-      <p>im the ScrollText</p>
+      <p className="crawl">{props.crawl}</p>
     </div>
   )
 };

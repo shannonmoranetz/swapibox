@@ -66,12 +66,10 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>App</h1>
         <Header />
-        <ScrollText />
+        <ScrollText crawl={this.state.crawl}/>
         <Controls retrieveCategory={this.retrieveCategory}/>
         <CardContainer />
-        <p>{this.state.crawl}</p>
       </div>
     )
   }

@@ -3,7 +3,7 @@ import { PersonCard } from '../PersonCard/PersonCard';
 import { PlanetCard } from '../PlanetCard/PlanetCard';
 import { VehicleCard } from '../VehicleCard/VehicleCard';
 
-export const CardContainer = ({ people, planets, vehicles, category }) => {
+export const FavoriteContainer = ({ people, planets, vehicles, category }) => {
 
   let cards; 
 

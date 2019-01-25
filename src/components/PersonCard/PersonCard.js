@@ -4,14 +4,19 @@ export class PersonCard extends Component {
   constructor() {
     super();
     this.state = {
-
+      isFavorited: true
     }
   }
+
+  // passIsFavorited = () => {
+
+  // }
 
   render() {
     let { person } = this.props;
     return(
-      <div className="Card">
+      <div className="PersonCard">
+        <button className="favorite-person-toggle">favorite</button>
         <p className="name">{person.person}</p>
         <p className="homeworld">{person.homeworld}</p>
         <p className="population">{person.population}</p>

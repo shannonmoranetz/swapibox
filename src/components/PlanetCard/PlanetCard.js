@@ -4,7 +4,7 @@ export class PlanetCard extends Component {
   constructor() {
     super();
     this.state = {
-
+      isFavorited: true
     }
   }
 

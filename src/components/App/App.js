@@ -15,6 +15,8 @@ export default class App extends Component {
       people: [],
       planets: [],
       vehicles: [],
+      favorites: [],
+      viewFavorites: false,
       dataIsLoaded: null
     }
   }
@@ -64,12 +66,14 @@ export default class App extends Component {
       <div className="App">
         <Header />
         <ScrollText crawl={this.state.crawl}/>
-        <Controls   retrieveCategory={this.retrieveCategory}/>
+        <Controls   retrieveCategory={this.retrieveCategory} />
         <Loader     people={this.state.people}
                     planets={this.state.planets}
                     vehicles={this.state.vehicles}
                     category={this.state.category}
-                    dataIsLoaded={this.state.dataIsLoaded} />
+                    dataIsLoaded={this.state.dataIsLoaded}
+                    favorites={this.state.favorites}
+                    viewFavorites={this.state.viewFavorites} />
       </div>
     )
   }

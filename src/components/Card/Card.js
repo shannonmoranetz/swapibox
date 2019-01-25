@@ -11,7 +11,7 @@ export class Card extends Component {
   render() {
     return(
       <div className="Card">
-        <p>im the card!</p>
+        {/* <p className="name">{people.name}</p> */}
       </div>
     )
   }

@@ -1,11 +1,22 @@
 import React from 'react';
 import { Card } from '../Card/Card';
 
-export const CardContainer = () => {
+export const CardContainer = ({ people, planets, vehicles, category }) => {
+  
+let peopleCards;
+
+if (category === 'people') {
+  peopleCards = people.map((person) => {
+    return <Card key={Date.now()} people={person}/>
+  })
+  console.log(peopleCards)
+}
+
   return (
     <div className="CardContainer">
-      <p>im the card container</p>
-      <Card />
+      <ul>
+        { peopleCards }
+      </ul>
     </div>
   )
 };

@@ -13,7 +13,8 @@ export default class App extends Component {
       crawl: [],
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [],
+      category: ''
     }
   }
   
@@ -52,16 +53,27 @@ export default class App extends Component {
   }
 
   retrieveCategory = (category) => {
+    this.setState({ category: category });
     if (category === 'people') {
       this.populatePeople();
-    }
-    else if (category === 'planets') {
+    } else if (category === 'planets') {
       this.populatePlanets();
-    }
-    else {
+    } else if (category === 'vehicles') {
       this.populateVehicles();
     }
   }
+
+  // selectCardsToPass = async (category) => {
+  //   if (category === 'people') {
+  //     this.populatePeople();
+  //   } else if (category === 'planets') {
+  //     this.populatePlanets();
+  //   } else if (category === 'vehicles') {
+  //     this.populateVehicles();
+  //   } else {
+  //     return [];
+  //   }
+  // }
 
   render() {
     return (
@@ -69,7 +81,9 @@ export default class App extends Component {
         <Header />
         <ScrollText crawl={this.state.crawl}/>
         <Controls retrieveCategory={this.retrieveCategory}/>
-        <CardContainer />
+        <CardContainer  people={this.state.people}
+                        planets={this.state.planets}
+                        vehicles={this.state.vehicles}/>
       </div>
     )
   }

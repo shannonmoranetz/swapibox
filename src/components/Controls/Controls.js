@@ -4,34 +4,45 @@ export class Controls extends Component {
   constructor() {
     super();
     this.state = {
-      isClicked: false
+
     }
   }
 
   passCategory = (e) => {
     let category = e.target.name;
+    this.checkClicked(e)
+    this.checkUnclicked(e)
     this.props.retrieveCategory(category)
   }
 
-  changeButtonColor = () => {
-    this.setState({isClicked: !this.state.isClicked})
- }
+  checkClicked = (e) => {
+    let categories = ['people', 'planets', 'vehicles']
+    let Clicked = categories.filter((category) => {
+      return category === e.target.name
+    })
+    console.log('clicked: ', Clicked)
+    return Clicked;
+  }
+
+  checkUnclicked = (e) => {
+    let categories = ['people', 'planets', 'vehicles']
+    let unClicked = categories.filter((category) => {
+      return category !== e.target.name
+    })
+    console.log('UNclicked: ', unClicked)
+    return unClicked;
+  }
 
   render() {
-    let buttons;
     let categories = ['people', 'planets', 'vehicles']
-    // if (this.state.isClicked) {
-      buttons = categories.map((category) => {
-      return <button className={`${category}`} name={`${category}`} onClick={this.passCategory}>{`${category}`}</button>
+
+    let buttons = categories.map((category) => {
+        return <button className={`${this.state.buttonClicked}-active`} name={`${category}`} onClick={this.passCategory}>{`${category}`}</button>
       })
-    // }
-    return(
-      <div className="Controls">
-        {/* <button className="people-button" name="people" onClick={this.passCategory}>People</button>
-        <button className="planets-button" name="planets" onClick={this.passCategory}>Planets</button>
-        <button className="vehicles-button" name="vehicles" onClick={this.passCategory}>Vehicles</button> */}
-        { buttons }
-      </div>
+
+    return (
+      buttons
     )
+
   }
 }

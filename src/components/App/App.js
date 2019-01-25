@@ -25,7 +25,7 @@ export default class App extends Component {
   populateScrollText = async () => {
     let randomCrawlNum = Math.floor(Math.random() * 6) + 1;
     const randomCrawl = await fetchScrollText();
-    this.setState({ crawl: await randomCrawl[randomCrawlNum].crawl })
+    this.setState({ crawl: await randomCrawl[randomCrawlNum] })
   }
   
   populatePeople = async () => {

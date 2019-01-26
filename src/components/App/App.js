@@ -23,6 +23,10 @@ export default class App extends Component {
   componentDidMount = () => {
     this.populateRandomScrollText();
   }
+
+  updateLoadStatus = () => {
+    this.setState({ dataIsLoaded: false })
+  }
   
   populateRandomScrollText = async () => {
     let randomCrawlNum = Math.floor(Math.random() * 6) + 1;
@@ -70,10 +74,6 @@ export default class App extends Component {
       return favoriteItem !== favoritedData;
     })
     this.setState({ favorites: newFavoritedData })
-  }
-
-  updateLoadStatus = () => {
-    this.setState({ dataIsLoaded: false })
   }
 
   render() {

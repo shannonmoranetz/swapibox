@@ -8,6 +8,10 @@ export class Card extends Component {
     }
   }
 
+  componentDidMount = () => {
+    console.log('RE-RENDER')
+  }
+
   checkFavoriteStatus = () => {
     this.setState({ isFavorited: !this.state.isFavorited })
     if (this.state.isFavorited === false) {
@@ -87,7 +91,6 @@ export class Card extends Component {
   }
 
   render() {
-    // let { favorite } = this.props;
     if (this.props.category === 'people') {
       return this.returnPeople();
     } else if (this.props.category === 'planets') {

@@ -19,13 +19,7 @@ export const CardContainer = ({ cards, category, retrieveFavorited, removeFavori
     })
   } else if (category === 'favorites') {
     allCards = cards.map((card) => {
-        if (card.category === 'people') {
-          return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited} />
-        } else if (card.category === 'planets') {
-          return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
-        } else if (card.category === 'vehicles') {
-          return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
-      }
+      return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited} />
     })
   }
 

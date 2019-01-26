@@ -49,11 +49,11 @@ export class Card extends Component {
         <button className={
                 this.state.isFavorited === true ? 'active' : 'inactive'
               }  onClick={this.checkFavoriteStatus}>favorite</button>
-        <p className="name">{item.person}</p>
-        <p className="homeworld">{item.homeworld}</p>
+        <p className="name">{item.planet}</p>
+        <p className="homeworld">{item.terrain}</p>
         <p className="population">{item.population}</p>
-        <p className="species">{item.species}</p>
-        <p className="language">{item.language}</p>
+        <p className="species">{item.climate}</p>
+        <p className="language">{item.addedResidents}</p>
       </div>
     )
   }
@@ -64,19 +64,20 @@ export class Card extends Component {
       <div className="Card">
         <button className={
                 this.state.isFavorited === true ? 'active' : 'inactive'
-              }  onClick={this.checkFavoriteStatus}>favorite</button>
-        <p className="name">{item.person}</p>
-        <p className="homeworld">{item.homeworld}</p>
-        <p className="population">{item.population}</p>
-        <p className="species">{item.species}</p>
-        <p className="language">{item.language}</p>
+              } 
+              onClick={this.checkFavoriteStatus}>favorite</button>
+        <p className="name">{item.name}</p>
+        <p className="homeworld">{item.model}</p>
+        <p className="population">{item.class}</p>
+        <p className="species">{item.passengers}</p>
       </div>
     )
   }
 
-  render() {
-    let { item, favorite } = this.props;
-    if (this.props.category === 'people' && favorite === false) {
+  returnFavorites = () => {
+    let { item } = this.props;
+    
+    if ('homeworld' in item) {
       return (
         <div className="Card">
           <button className={
@@ -89,7 +90,8 @@ export class Card extends Component {
           <p className="language">{item.language}</p>
         </div>
       )
-    } else if (this.props.category === 'planets' && favorite === false) {
+    }
+    if ('climate' in item) {
       return (
         <div className="Card">
           <button className={
@@ -102,7 +104,8 @@ export class Card extends Component {
           <p className="language">{item.addedResidents}</p>
         </div>
       )
-    } else if (this.props.category === 'vehicles' && favorite === false) {
+    }
+    if ('model' in item) {
       return (
         <div className="Card">
           <button className={
@@ -115,12 +118,24 @@ export class Card extends Component {
           <p className="species">{item.passengers}</p>
         </div>
       )
-    } else if (this.props.category === 'favorites' && favorite === true) {
-      return this.returnFavoritePeople();
-    } else if (this.props.category === 'favorites' && favorite === true) {
-      return this.returnFavoritePlanets();
-    } else if (this.props.category === 'favorites' && favorite === true) {
-      return this.returnFavoriteVehicles();
     }
+  }
+
+  render() {
+    let { item, favorite } = this.props;
+
+    if (this.props.category === 'people' && favorite === false) {
+      return this.returnPeople();
+    } else if (this.props.category === 'planets' && favorite === false) {
+      return this.returnPlanets();
+    } else if (this.props.category === 'vehicles' && favorite === false) {
+      return this.returnVehicles();
+    } 
+    
+    
+    else if (favorite === true) {
+      return this.returnFavorites();
+    }
+
   }
 }

@@ -7,24 +7,24 @@ export const CardContainer = ({ cards, category, retrieveFavorited, removeFavori
 
   if (category === 'people') {
     allCards = cards.map((person) => {
-      return <Card key={person.name} item={person} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+      return <Card key={person.name} item={person} favorite={false} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
     })
   } else if (category === 'planets') {
     allCards = cards.map((planet) => {
-      return <Card key={planet.name} item={planet} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+      return <Card key={planet.name} item={planet} favorite={false} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
     })
   } else if (category === 'vehicles') {
     allCards = cards.map((vehicle) => {
-      return <Card key={vehicle.name} item={vehicle} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+      return <Card key={vehicle.name} item={vehicle} favorite={false} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
     })
   } else if (category === 'favorites') {
     allCards = cards.map((card) => {
         if (card.category === 'people') {
-          return <Card key={card.name} item={card} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited} />
+          return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited} />
         } else if (card.category === 'planets') {
-          return <Card key={card.name} item={card} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+          return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
         } else if (card.category === 'vehicles') {
-          return <Card key={card.name} item={card} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+          return <Card key={card.name} item={card} favorite={true} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
       }
     })
   }

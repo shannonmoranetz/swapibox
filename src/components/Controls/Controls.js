@@ -4,7 +4,8 @@ export class Controls extends Component {
   constructor() {
     super();
     this.state = {
-      active: null
+      active: null,
+      viewFavorites: false
     }
   }
 
@@ -15,7 +16,7 @@ export class Controls extends Component {
   }
 
   render() {
-    let categories = ['people', 'planets', 'vehicles']
+    let categories = ['people', 'planets', 'vehicles', `favorites (${this.props.favorites.length})`]
     return categories.map((category) => {
       return <button active={this.state.isActive} 
       className={
@@ -23,5 +24,6 @@ export class Controls extends Component {
       }
       name={`${category}`} onClick={this.passCategory}>{`${category}`}</button>
     })
+
   }
 }

@@ -78,15 +78,15 @@ export default class App extends Component {
   }
 
   render() {
+    let { category } = this.state
     return (
       <div className="App">
         <Header />
         <ScrollText crawl={this.state.crawl}/>
-        <Controls   retrieveCategory={this.retrieveCategory} />
-        <Loader     people={this.state.people}
-                    planets={this.state.planets}
-                    vehicles={this.state.vehicles}
-                    category={this.state.category}
+        <Controls   retrieveCategory={this.retrieveCategory} 
+                    favorites={this.state.favorites} />
+        <Loader     category={this.state.category}
+                    cards={this.state[category]}
                     dataIsLoaded={this.state.dataIsLoaded}
                     favorites={this.state.favorites}
                     viewFavorites={this.state.viewFavorites} 

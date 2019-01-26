@@ -9,7 +9,6 @@ export class Card extends Component {
   }
 
   checkFavoriteStatus = () => {
-    console.log(this.props.category)
     this.setState({ isFavorited: !this.state.isFavorited })
     if (this.state.isFavorited === false) {
       this.passFavorited(this.props.item)
@@ -76,66 +75,27 @@ export class Card extends Component {
 
   returnFavorites = () => {
     let { item } = this.props;
-    
     if ('homeworld' in item) {
-      return (
-        <div className="Card">
-          <button className={
-                  this.state.isFavorited === true ? 'active' : 'inactive'
-                }  onClick={this.checkFavoriteStatus}>favorite</button>
-          <p className="name">{item.person}</p>
-          <p className="homeworld">{item.homeworld}</p>
-          <p className="population">{item.population}</p>
-          <p className="species">{item.species}</p>
-          <p className="language">{item.language}</p>
-        </div>
-      )
+      return this.returnPeople();
     }
     if ('climate' in item) {
-      return (
-        <div className="Card">
-          <button className={
-                  this.state.isFavorited === true ? 'active' : 'inactive'
-                }  onClick={this.checkFavoriteStatus}>favorite</button>
-          <p className="name">{item.planet}</p>
-          <p className="homeworld">{item.terrain}</p>
-          <p className="population">{item.population}</p>
-          <p className="species">{item.climate}</p>
-          <p className="language">{item.addedResidents}</p>
-        </div>
-      )
+      return this.returnPlanets();
     }
     if ('model' in item) {
-      return (
-        <div className="Card">
-          <button className={
-                  this.state.isFavorited === true ? 'active' : 'inactive'
-                } 
-                onClick={this.checkFavoriteStatus}>favorite</button>
-          <p className="name">{item.name}</p>
-          <p className="homeworld">{item.model}</p>
-          <p className="population">{item.class}</p>
-          <p className="species">{item.passengers}</p>
-        </div>
-      )
+      return this.returnVehicles();
     }
   }
 
   render() {
-    let { item, favorite } = this.props;
-
-    if (this.props.category === 'people' && favorite === false) {
+    // let { favorite } = this.props;
+    if (this.props.category === 'people') {
       return this.returnPeople();
-    } else if (this.props.category === 'planets' && favorite === false) {
+    } else if (this.props.category === 'planets') {
       return this.returnPlanets();
-    } else if (this.props.category === 'vehicles' && favorite === false) {
+    } else if (this.props.category === 'vehicles') {
       return this.returnVehicles();
-    } 
-    
-    
-    else if (favorite === true) {
+    } else if (this.props.category === 'favorites') {
       return this.returnFavorites();
     }
-
   }
 }

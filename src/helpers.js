@@ -19,9 +19,9 @@ export const fetchSpecies = (fetchedPeople) => {
     if (person.species.length > 0) {
       const response = await fetch(person.species[0]);
       const result = await response.json();
-      return ({ person: person.name, homeworld: person.homeworld, population: person.population, species: result.name, language: result.language, category: 'people'});
+      return ({ person: person.name, homeworld: person.homeworld, population: person.population, species: result.name, language: result.language});
     } else {
-      return ({ person: person.name, homeworld: person.homeworld, population: person.population, species: 'Unknown', language: 'Unknown', category: 'people'});
+      return ({ person: person.name, homeworld: person.homeworld, population: person.population, species: 'Unknown', language: 'Unknown'});
     }
   })
 return Promise.all(unresolvedPromises);
@@ -33,7 +33,7 @@ export const fetchResidents = (planets) => {
       const addedResidents = await addResidents(planet.residents);
       return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: addedResidents})
       } else {
-      return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: 'None.', category: 'planets'})
+      return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: 'None.'})
       }
     })
   return Promise.all(unresolvedPromises)
@@ -50,7 +50,7 @@ const addResidents = (links) => {
 
 export const fetchVehicleData = async (vehicles) => {
   const unresolvedPromises = vehicles.map(async vehicle => {
-  return ({ name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, category: 'vehicles'})
+  return ({ name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers})
   })
   return Promise.all(unresolvedPromises);
 }

@@ -16,7 +16,6 @@ export default class App extends Component {
       planets: [],
       vehicles: [],
       favorites: [],
-      viewFavorites: false,
       dataIsLoaded: null
     }
   }
@@ -58,7 +57,6 @@ export default class App extends Component {
   }
 
   retrieveFavorited = (favoritedData) => {
-    console.log(favoritedData)
     if (this.state.favorites.includes(favoritedData)) {
       return;
     } else {
@@ -89,8 +87,6 @@ export default class App extends Component {
         <Loader     category={this.state.category}
                     cards={this.state[category]}
                     dataIsLoaded={this.state.dataIsLoaded}
-                    favorites={this.state.favorites}
-                    viewFavorites={this.state.viewFavorites} 
                     retrieveFavorited={this.retrieveFavorited}
                     removeFavorited={this.removeFavorited} />
       </div>

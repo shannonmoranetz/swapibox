@@ -9,11 +9,20 @@ export class PlanetCard extends Component {
   }
 
   checkFavoriteStatus = () => {
-    this.setState({ isFavorited: !this.state.isFavorited }, this.passFavorited(this.props.planet))
+    this.setState({ isFavorited: !this.state.isFavorited })
+    if (this.state.isFavorited === false) {
+      this.passFavorited(this.props.planet)
+    } else {
+      this.passUnfavorited(this.props.planet)
+    }
   }
 
   passFavorited = (planetData) => {
     this.props.retrieveFavorited(planetData)
+  }
+
+  passUnfavorited = (planetData) => {
+    this.props.removeFavorited(planetData)
   }
 
   render() {

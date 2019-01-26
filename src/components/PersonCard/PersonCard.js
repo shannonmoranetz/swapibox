@@ -9,11 +9,20 @@ export class PersonCard extends Component {
   }
 
   checkFavoriteStatus = () => {
-    this.setState({ isFavorited: !this.state.isFavorited }, this.passFavorited(this.props.person))
+    this.setState({ isFavorited: !this.state.isFavorited })
+    if (this.state.isFavorited === false) {
+      this.passFavorited(this.props.person)
+    } else {
+      this.passUnfavorited(this.props.person)
+    }
   }
 
   passFavorited = (personData) => {
     this.props.retrieveFavorited(personData)
+  }
+
+  passUnfavorited = (personData) => {
+    this.props.removeFavorited(personData)
   }
 
   render() {

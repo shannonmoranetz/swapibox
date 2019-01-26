@@ -65,6 +65,15 @@ export default class App extends Component {
     }
   }
 
+  removeFavorited = (favoritedData) => {
+    let oldFavoritedData = this.state.favorites;
+    let newFavoritedData = oldFavoritedData.filter((fave) => {
+      return fave !== favoritedData;
+    })
+    this.setState({ favorites: newFavoritedData })
+    console.log('blaaa')
+  }
+
   updateLoadStatus = () => {
     this.setState({ dataIsLoaded: false })
   }
@@ -82,7 +91,8 @@ export default class App extends Component {
                     dataIsLoaded={this.state.dataIsLoaded}
                     favorites={this.state.favorites}
                     viewFavorites={this.state.viewFavorites} 
-                    retrieveFavorited={this.retrieveFavorited} />
+                    retrieveFavorited={this.retrieveFavorited}
+                    removeFavorited={this.removeFavorited} />
       </div>
     )
   }

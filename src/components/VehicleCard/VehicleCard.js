@@ -9,11 +9,20 @@ export class VehicleCard extends Component {
   }
 
   checkFavoriteStatus = () => {
-    this.setState({ isFavorited: !this.state.isFavorited }, this.passFavorited(this.props.vehicle))
+    this.setState({ isFavorited: !this.state.isFavorited })
+    if (this.state.isFavorited === false) {
+      this.passFavorited(this.props.vehicle)
+    } else {
+      this.passUnfavorited(this.props.vehicle)
+    }
   }
 
   passFavorited = (vehicleData) => {
     this.props.retrieveFavorited(vehicleData)
+  }
+
+  passUnfavorited = (vehicleData) => {
+    this.props.removeFavorited(vehicleData)
   }
 
   render() {

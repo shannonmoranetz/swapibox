@@ -33,7 +33,7 @@ export const fetchResidents = (planets) => {
       const addedResidents = await addResidents(planet.residents);
       return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: addedResidents})
       } else {
-      return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: 'None.', category: 'people'})
+      return ({ planet: planet.name, terrain: planet.terrain, population: planet.population, climate: planet.climate, residents: 'None.', category: 'planets'})
       }
     })
   return Promise.all(unresolvedPromises)
@@ -50,7 +50,7 @@ const addResidents = (links) => {
 
 export const fetchVehicleData = async (vehicles) => {
   const unresolvedPromises = vehicles.map(async vehicle => {
-  return ({ name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, category: 'people'})
+  return ({ name: vehicle.name, model: vehicle.model, class: vehicle.vehicle_class, passengers: vehicle.passengers, category: 'vehicles'})
   })
   return Promise.all(unresolvedPromises);
 }

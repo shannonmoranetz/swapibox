@@ -1,9 +1,10 @@
 import React from 'react';
 import { CardContainer } from '../CardContainer/CardContainer';
-import { FavoriteContainer } from '../FavoriteContainer/FavoriteContainer';
 
-export const Loader = ({ category, dataIsLoaded, viewFavorites, retrieveFavorited, removeFavorited, favorites, cards }) => {
+export const Loader = ({ category, dataIsLoaded, retrieveFavorited, removeFavorited, favorites, cards }) => {
 
+  console.log(cards)
+  
   if (dataIsLoaded === false) {
     return (
       <div className="Loader">
@@ -11,15 +12,6 @@ export const Loader = ({ category, dataIsLoaded, viewFavorites, retrieveFavorite
       </div>
     )
   }
-  // else if (viewFavorites === true) {
-  //   return (
-  //     <FavoriteContainer  people={people}
-  //                         planets={planets}
-  //                         vehicles={vehicles}
-  //                         category={category}
-  //                         favorites={favorites}/>
-  //   )
-  // } 
   else {
     return (
       <CardContainer  cards={cards}

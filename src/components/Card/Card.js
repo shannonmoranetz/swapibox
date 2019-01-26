@@ -8,10 +8,6 @@ export class Card extends Component {
     }
   }
 
-  componentDidMount = () => {
-    console.log('RE-RENDER')
-  }
-
   checkFavoriteStatus = () => {
     this.setState({ isFavorited: !this.state.isFavorited })
     if (this.state.isFavorited === false) {

@@ -58,7 +58,11 @@ export default class App extends Component {
   }
 
   retrieveFavorited = (favoritedData) => {
-    this.setState({ favorites: [...this.state.favorites, favoritedData] })
+    if (this.state.favorites.includes(favoritedData)) {
+      return;
+    } else {
+      this.setState({ favorites: [...this.state.favorites, favoritedData] })
+    }
   }
 
   updateLoadStatus = () => {

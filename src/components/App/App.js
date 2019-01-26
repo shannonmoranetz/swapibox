@@ -48,7 +48,7 @@ export default class App extends Component {
     if (category === 'people' && this.state.people.length === 0) {
       this.updateLoadStatus();
       this.populatePeople();
-    } else if (category === 'planets' && this.state.vehicles.length === 0) {
+    } else if (category === 'planets' && this.state.planets.length === 0) {
       this.updateLoadStatus();
       this.populatePlanets();
     } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
@@ -58,6 +58,7 @@ export default class App extends Component {
   }
 
   retrieveFavorited = (favoritedData) => {
+    console.log(favoritedData)
     if (this.state.favorites.includes(favoritedData)) {
       return;
     } else {
@@ -67,8 +68,8 @@ export default class App extends Component {
 
   removeFavorited = (favoritedData) => {
     let oldFavoritedData = this.state.favorites;
-    let newFavoritedData = oldFavoritedData.filter((fave) => {
-      return fave !== favoritedData;
+    let newFavoritedData = oldFavoritedData.filter((favoriteItem) => {
+      return favoriteItem !== favoritedData;
     })
     this.setState({ favorites: newFavoritedData })
   }

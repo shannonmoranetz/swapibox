@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class PersonCard extends Component {
+export class Card extends Component {
   constructor() {
     super();
     this.state = {
@@ -28,7 +28,7 @@ export class PersonCard extends Component {
   render() {
     let { person } = this.props;
     return(
-      <div className="PersonCard">
+      <div className="Card">
         <button className={
                 this.state.isFavorited === true ? 'active' : 'inactive'
               }  onClick={this.checkFavoriteStatus}>favorite</button>

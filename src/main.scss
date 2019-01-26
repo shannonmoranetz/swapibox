@@ -1,9 +1,7 @@
 @import "./normalize";
 @import "./variables";
 @import "./components/App/App.scss";
-@import "./components/PersonCard/PersonCard.scss";
-@import "./components/PlanetCard/PlanetCard.scss";
-@import "./components/VehicleCard/VehicleCard.scss";
+@import "./components/Card/Card.scss";
 @import "./components/CardContainer/CardContainer.scss";
 @import "./components/Controls/Controls.scss";
 @import "./components/Header/Header.scss";

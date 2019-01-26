@@ -54,7 +54,7 @@ export default class App extends Component {
     } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
       this.updateLoadStatus();
       this.populateVehicles();
-    } 
+    }
   }
 
   retrieveFavorited = (favoritedData) => {

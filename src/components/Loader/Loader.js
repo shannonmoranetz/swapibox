@@ -2,8 +2,6 @@ import React from 'react';
 import { CardContainer } from '../CardContainer/CardContainer';
 
 export const Loader = ({ category, dataIsLoaded, retrieveFavorited, removeFavorited, favorites, cards }) => {
-
-  console.log(cards)
   
   if (dataIsLoaded === false) {
     return (

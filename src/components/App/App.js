@@ -6,7 +6,6 @@ import { Header } from '../Header/Header';
 import { Loader } from '../Loader/Loader';
 import { ScrollText } from '../ScrollText/ScrollText';
 
-
 export default class App extends Component {
   constructor() {
     super();
@@ -59,7 +58,7 @@ export default class App extends Component {
   }
 
   retrieveFavorited = (favoritedData) => {
-    console.log('App', favoritedData)
+    this.setState({ favorites: [...this.state.favorites, favoritedData] })
   }
 
   updateLoadStatus = () => {

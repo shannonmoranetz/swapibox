@@ -13,7 +13,6 @@ export class PersonCard extends Component {
   }
 
   passFavorited = (personData) => {
-    console.log(personData)
     this.props.retrieveFavorited(personData)
   }
 

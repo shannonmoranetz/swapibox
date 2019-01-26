@@ -71,7 +71,6 @@ export default class App extends Component {
       return fave !== favoritedData;
     })
     this.setState({ favorites: newFavoritedData })
-    console.log('blaaa')
   }
 
   updateLoadStatus = () => {

@@ -29,7 +29,9 @@ export class PlanetCard extends Component {
     let { planet } = this.props;
     return(
       <div className="PlanetCard">
-        <button className="favorite-person-toggle" onClick={this.checkFavoriteStatus}>favorite</button>
+        <button className={
+                this.state.isFavorited === true ? 'active' : 'inactive'
+              }  onClick={this.checkFavoriteStatus}>favorite</button>
         <p className="name">{planet.planet}</p>
         <p className="homeworld">{planet.terrain}</p>
         <p className="population">{planet.population}</p>

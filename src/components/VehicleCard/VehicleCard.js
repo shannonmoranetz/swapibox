@@ -29,7 +29,10 @@ export class VehicleCard extends Component {
     let { vehicle } = this.props;
     return(
       <div className="VehicleCard">
-        <button className="favorite-person-toggle" onClick={this.checkFavoriteStatus}>favorite</button>
+        <button className={
+                this.state.isFavorited === true ? 'active' : 'inactive'
+              } 
+              onClick={this.checkFavoriteStatus}>favorite</button>
         <p className="name">{vehicle.name}</p>
         <p className="homeworld">{vehicle.model}</p>
         <p className="population">{vehicle.class}</p>

@@ -15,7 +15,7 @@ export const CardContainer = ({ people, planets, vehicles, category, retrieveFav
     cards = planets.map((planet) => {
       return <PlanetCard key={planet.name} planet={planet} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
     })
-  } else {
+  } else if (category === 'vehicles') {
     cards = vehicles.map((vehicle) => {
       return <VehicleCard key={vehicle.name} vehicle={vehicle} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
     })

@@ -7,7 +7,7 @@ body {
   background-image: url("images/background.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
 }
 
 .header {
@@ -20,4 +20,5 @@ body {
   font-size: 60px;
   text-align: center;
   text-shadow: 1px 0px white;
+  margin: 15px;
 }

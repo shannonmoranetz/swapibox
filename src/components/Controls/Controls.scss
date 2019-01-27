@@ -12,4 +12,17 @@
 .pressed {
   display: inline-block;
   height: 50px;
+  width: 120px;
+  text-transform: capitalize;
+  font-family: $heading-font;
+  font-size: 20px;
+  color: #354C8E;
+  border-radius: 5px;
+  margin: 0px 10px 0px 10px;
+}
+
+.notpressed:hover,
+.pressed:hover {
+  box-shadow: 4px 4px 5px $secondary-color;
+  cursor: pointer;
 }

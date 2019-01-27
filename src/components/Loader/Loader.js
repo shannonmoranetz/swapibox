@@ -15,8 +15,8 @@ export const Loader = ({ category, dataIsLoaded, retrieveFavorited, removeFavori
       <CardContainer  cards={cards}
                       category={category}
                       favorites={favorites}
-                      retrieveFavorited={retrieveFavorited}
-                      removeFavorited={removeFavorited} />
+                      removeFavorited={removeFavorited}
+                      retrieveFavorited={retrieveFavorited} />
     )
   }
 };

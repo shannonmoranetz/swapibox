@@ -8,13 +8,8 @@ export class Card extends Component {
     }
   }
 
-  checkFavoriteStatus = () => {
-    this.setState({ isFavorited: !this.state.isFavorited })
-    if (this.state.isFavorited === false) {
-      this.passFavorited(this.props.item)
-    } else {
-      this.passUnfavorited(this.props.item)
-    }
+  componentDidMount = () => {
+    console.log(this.props.item.residents)
   }
 
   passFavorited = (itemData) => {
@@ -25,18 +20,28 @@ export class Card extends Component {
     this.props.removeFavorited(itemData)
   }
 
+  checkFavoriteStatus = () => {
+    let { item } = this.props
+    let { isFavorited } = this.state
+    this.setState({ isFavorited: !isFavorited })
+    if (isFavorited === false) {
+      this.passFavorited(item)
+    } else {
+      this.passUnfavorited(item)
+    }
+  }
+
   returnPeople = () => {
     let { item } = this.props;
     return (
       <div className="Card">
-        <button className={
-                this.state.isFavorited === true ? 'active' : 'inactive'
-              }  onClick={this.checkFavoriteStatus}>favorite</button>
-        <p className="name">{item.person}</p>
-        <p className="homeworld">{item.homeworld}</p>
-        <p className="population">{item.population}</p>
-        <p className="species">{item.species}</p>
-        <p className="language">{item.language}</p>
+        <button className={ this.state.isFavorited === true ? 'active' : 'inactive' }  
+                onClick={this.checkFavoriteStatus}>favorite</button>
+        <p className="name">Name: {item.person}</p>
+        <p className="homeworld">Homeworld: {item.homeworld}</p>
+        <p className="population">Population: {item.population}</p>
+        <p className="species">Species: {item.species}</p>
+        <p className="language">Language: {item.language}</p>
       </div>
     )
   }
@@ -45,30 +50,37 @@ export class Card extends Component {
     let { item } = this.props;
     return (
       <div className="Card">
-        <button className={
-                this.state.isFavorited === true ? 'active' : 'inactive'
-              }  onClick={this.checkFavoriteStatus}>favorite</button>
-        <p className="name">{item.planet}</p>
-        <p className="homeworld">{item.terrain}</p>
-        <p className="population">{item.population}</p>
-        <p className="species">{item.climate}</p>
-        <p className="language">{item.addedResidents}</p>
+        <button className={ this.state.isFavorited === true ? 'active' : 'inactive' }  
+                onClick={this.checkFavoriteStatus}>favorite</button>
+        <p className="name">Planet: {item.planet}</p>
+        <p className="terrain">Terrain: {item.terrain}</p>
+        <p className="population">Population: {item.population}</p>
+        <p className="climate">Climate: {item.climate}</p>
+        <ul className="residents">Residents: {this.returnPlanetResidents()} </ul>
       </div>
     )
+  }
+
+  returnPlanetResidents = () => {
+    if (this.props.item.residents !== 'None.') {
+      return this.props.item.residents.map((resident) => {
+          return <li>{resident}</li>
+      })
+    } else {
+      return;
+    }
   }
 
   returnVehicles = () => {
     let { item } = this.props;
     return (
       <div className="Card">
-        <button className={
-                this.state.isFavorited === true ? 'active' : 'inactive'
-              } 
-              onClick={this.checkFavoriteStatus}>favorite</button>
-        <p className="name">{item.name}</p>
-        <p className="homeworld">{item.model}</p>
-        <p className="population">{item.class}</p>
-        <p className="species">{item.passengers}</p>
+        <button className={ this.state.isFavorited === true ? 'active' : 'inactive' }  
+                onClick={this.checkFavoriteStatus}>favorite</button>
+        <p className="name">Name: {item.name}</p>
+        <p className="model">Model: {item.model}</p>
+        <p className="class">Class: {item.class}</p>
+        <p className="passengers">Passengers: {item.passengers}</p>
       </div>
     )
   }
@@ -87,13 +99,14 @@ export class Card extends Component {
   }
 
   render() {
-    if (this.props.category === 'people') {
+    let { category } = this.props
+    if (category === 'people') {
       return this.returnPeople();
-    } else if (this.props.category === 'planets') {
+    } else if (category === 'planets') {
       return this.returnPlanets();
-    } else if (this.props.category === 'vehicles') {
+    } else if (category === 'vehicles') {
       return this.returnVehicles();
-    } else if (this.props.category === 'favorites') {
+    } else if (category === 'favorites') {
       return this.returnFavorites();
     }
   }

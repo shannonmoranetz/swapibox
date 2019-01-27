@@ -7,25 +7,25 @@ export const CardContainer = ({ cards, category, retrieveFavorited, removeFavori
 
   if (category === 'people') {
     allCards = cards.map((person, i) => {
-      return <Card key={i} item={person} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+      return <Card category={category} item={person} key={i} removeFavorited={removeFavorited} retrieveFavorited={retrieveFavorited} />
     })
   } else if (category === 'planets') {
     allCards = cards.map((planet, i) => {
-      return <Card key={i} item={planet} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+      return <Card category={category} item={planet} key={i} removeFavorited={removeFavorited} retrieveFavorited={retrieveFavorited} />
     })
   } else if (category === 'vehicles') {
     allCards = cards.map((vehicle, i) => {
-      return <Card key={i} item={vehicle} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited}/>
+      return <Card category={category} item={vehicle} key={i} removeFavorited={removeFavorited} retrieveFavorited={retrieveFavorited} />
     })
   } else if (category === 'favorites') {
-    allCards = cards.map((card, i) => {
-      return <Card key={i} item={card} category={category} retrieveFavorited={retrieveFavorited} removeFavorited={removeFavorited} />
+    allCards = cards.map((favorite, i) => {
+      return <Card category={category} item={favorite} key={i} removeFavorited={removeFavorited} retrieveFavorited={retrieveFavorited}  />
     })
   }
 
   return (
     <div className="CardContainer">
-      <ul>
+      <ul className="card-list">
         { allCards }
       </ul>
     </div>

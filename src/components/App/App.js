@@ -12,20 +12,16 @@ export default class App extends Component {
     this.state = {
       category: '',
       crawl: [],
+      dataIsLoaded: null,
+      favorites: [],
       people: [],
       planets: [],
-      vehicles: [],
-      favorites: [],
-      dataIsLoaded: null
+      vehicles: []
     }
   }
   
   componentDidMount = () => {
     this.populateRandomScrollText();
-  }
-
-  updateLoadStatus = () => {
-    this.setState({ dataIsLoaded: false })
   }
   
   populateRandomScrollText = async () => {
@@ -46,25 +42,31 @@ export default class App extends Component {
     this.setState({ vehicles: await fetchVehicles(), dataIsLoaded: true })
   }
 
+  updateLoadStatus = () => {
+    this.setState({ dataIsLoaded: false })
+  }
+  
   retrieveCategory = (category) => {
+    let { people, planets, vehicles } = this.state
     this.setState({ category: category});
-    if (category === 'people' && this.state.people.length === 0) {
+    if (category === 'people' && people.length === 0) {
       this.updateLoadStatus();
       this.populatePeople();
-    } else if (category === 'planets' && this.state.planets.length === 0) {
+    } else if (category === 'planets' && planets.length === 0) {
       this.updateLoadStatus();
       this.populatePlanets();
-    } else if (category === 'vehicles' && this.state.vehicles.length === 0) {
+    } else if (category === 'vehicles' && vehicles.length === 0) {
       this.updateLoadStatus();
       this.populateVehicles();
     }
   }
 
   retrieveFavorited = (favoritedData) => {
-    if (this.state.favorites.includes(favoritedData)) {
+    let { favorites } = this.state
+    if (favorites.includes(favoritedData)) {
       return;
     } else {
-      this.setState({ favorites: [...this.state.favorites, favoritedData] })
+      this.setState({ favorites: [...favorites, favoritedData] })
     }
   }
 
@@ -77,18 +79,18 @@ export default class App extends Component {
   }
 
   render() {
-    let { category } = this.state
+    let { category, crawl, dataIsLoaded, favorites } = this.state
     return (
       <div className="App">
         <Header />
-        <ScrollText crawl={this.state.crawl}/>
-        <Controls   retrieveCategory={this.retrieveCategory} 
-                    favorites={this.state.favorites} />
-        <Loader     category={this.state.category}
+        <ScrollText crawl={crawl}/>
+        <Controls   favorites={favorites}
+                    retrieveCategory={this.retrieveCategory} />
+        <Loader     category={category}
                     cards={this.state[category]}
-                    dataIsLoaded={this.state.dataIsLoaded}
-                    retrieveFavorited={this.retrieveFavorited}
-                    removeFavorited={this.removeFavorited} />
+                    dataIsLoaded={dataIsLoaded}
+                    removeFavorited={this.removeFavorited}
+                    retrieveFavorited={this.retrieveFavorited} />
       </div>
     )
   }

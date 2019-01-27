@@ -17,11 +17,11 @@ export class Controls extends Component {
   render() {
     let categories = ['people', 'planets', 'vehicles', `favorites`]
     return categories.map((category, i) => {
-      return <button active={this.state.isActive} 
-      className={
-        this.state.active === category ? 'active' : 'inactive'
-      }
-      key={i} name={`${category}`} onClick={this.passCategory}>{`${category}`}</button>
+      return <button  active={this.state.isActive} 
+                      className={ this.state.active === category ? 'active' : 'inactive' }
+                      key={i}     
+                      name={`${category}`} 
+                      onClick={this.passCategory}>{`${category}`}</button>
     })
 
   }

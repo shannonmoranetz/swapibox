@@ -8,10 +8,6 @@ export class Card extends Component {
     }
   }
 
-  componentDidMount = () => {
-    console.log(this.props.item.residents)
-  }
-
   passFavorited = (itemData) => {
     this.props.retrieveFavorited(itemData)
   }
@@ -38,10 +34,10 @@ export class Card extends Component {
         <button className={ this.state.isFavorited === true ? 'active' : 'inactive' }  
                 onClick={this.checkFavoriteStatus}>favorite</button>
         <p className="name">Name: {item.person}</p>
-        <p className="homeworld">Homeworld: {item.homeworld}</p>
-        <p className="population">Population: {item.population}</p>
-        <p className="species">Species: {item.species}</p>
-        <p className="language">Language: {item.language}</p>
+        <p className="data">Homeworld: {item.homeworld}</p>
+        <p className="data">Population: {item.population}</p>
+        <p className="data">Species: {item.species}</p>
+        <p className="data">Language: {item.language}</p>
       </div>
     )
   }
@@ -53,21 +49,22 @@ export class Card extends Component {
         <button className={ this.state.isFavorited === true ? 'active' : 'inactive' }  
                 onClick={this.checkFavoriteStatus}>favorite</button>
         <p className="name">Planet: {item.planet}</p>
-        <p className="terrain">Terrain: {item.terrain}</p>
-        <p className="population">Population: {item.population}</p>
-        <p className="climate">Climate: {item.climate}</p>
-        <ul className="residents">Residents: {this.returnPlanetResidents()} </ul>
+        <p className="data">Terrain: {item.terrain}</p>
+        <p className="data">Population: {item.population}</p>
+        <p className="data">Climate: {item.climate}</p>
+        <ul className="data">Residents: {this.returnPlanetResidents()} </ul>
       </div>
     )
   }
 
   returnPlanetResidents = () => {
-    if (this.props.item.residents !== 'None.') {
-      return this.props.item.residents.map((resident) => {
-          return <li>{resident}</li>
+    let { item } = this.props
+    if (item.residents !== 'None.') {
+      return item.residents.map((resident, i) => {
+          return <li className="subdata" key={i}>{resident}</li>
       })
     } else {
-      return;
+      return <li className="subdata">None.</li>
     }
   }
 
@@ -78,9 +75,9 @@ export class Card extends Component {
         <button className={ this.state.isFavorited === true ? 'active' : 'inactive' }  
                 onClick={this.checkFavoriteStatus}>favorite</button>
         <p className="name">Name: {item.name}</p>
-        <p className="model">Model: {item.model}</p>
-        <p className="class">Class: {item.class}</p>
-        <p className="passengers">Passengers: {item.passengers}</p>
+        <p className="data">Model: {item.model}</p>
+        <p className="data">Class: {item.class}</p>
+        <p className="data">Passengers: {item.passengers}</p>
       </div>
     )
   }

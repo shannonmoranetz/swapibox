@@ -16,9 +16,10 @@ export class Controls extends Component {
 
   render() {
     let categories = ['people', 'planets', 'vehicles', `favorites`]
+    let { isActive, active } = this.state
     return categories.map((category, i) => {
-      return <button  active={this.state.isActive} 
-                      className={ this.state.active === category ? 'active' : 'inactive' }
+      return <button  active={isActive} 
+                      className={ active === category ? 'active' : 'inactive' }
                       key={i}     
                       name={`${category}`} 
                       onClick={this.passCategory}>{`${category}`}</button>

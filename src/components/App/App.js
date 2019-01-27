@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../../main.scss';
 import { fetchScrollText, fetchPeople, fetchPlanets, fetchVehicles } from '../../apiCalls';
 import { Controls } from '../Controls/Controls';
-import { Header } from '../Header/Header';
 import { Loader } from '../Loader/Loader';
 import { ScrollText } from '../ScrollText/ScrollText';
 
@@ -79,10 +78,12 @@ export default class App extends Component {
   }
 
   render() {
-    let { category, crawl, dataIsLoaded, favorites } = this.state
+    let { crawl, category, dataIsLoaded, favorites } = this.state
     return (
       <div className="App">
-        <Header />
+        <header className="header">
+          <h1 className="title">SwapiBox</h1>
+        </header>
         <ScrollText crawl={crawl}/>
         <Controls   favorites={favorites}
                     retrieveCategory={this.retrieveCategory} />

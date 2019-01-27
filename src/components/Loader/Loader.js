@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardContainer } from '../CardContainer/CardContainer';
 
-export const Loader = ({ category, dataIsLoaded, retrieveFavorited, removeFavorited, favorites, cards }) => {
+export const Loader = ({ cards, category, dataIsLoaded, favorites, removeFavorited, retrieveFavorited,  }) => {
   
   if (dataIsLoaded === false) {
     return (

@@ -1,8 +1,24 @@
 .Card {
-  color: pink;
   border: 1px solid black;
 }
 
-.active {
-  background-color: blue
+.name {
+  color: black;
+  font-family: $heading-font;
+}
+
+.data {
+  font-family: $body-font;
+}
+
+.subdata {
+  font-family: $body-font;
+}
+
+.fas {
+  color: pink;
+}
+
+.far {
+  color: pink;
 }

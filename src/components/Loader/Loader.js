@@ -6,7 +6,7 @@ export const Loader = ({ cards, category, dataIsLoaded, favorites, removeFavorit
   if (dataIsLoaded === false) {
     return (
       <div className="Loader">
-        <p className="loading-text">loading</p>
+        <p className="loading-text">Loading...</p>
       </div>
     )
   }

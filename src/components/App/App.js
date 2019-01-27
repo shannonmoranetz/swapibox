@@ -85,8 +85,10 @@ export default class App extends Component {
           <h1 className="title">SwapiBox</h1>
         </header>
         <ScrollText crawl={crawl}/>
+        <div className="Controls">
         <Controls   favorites={favorites}
                     retrieveCategory={this.retrieveCategory} />
+        </div>
         <Loader     category={category}
                     cards={this.state[category]}
                     dataIsLoaded={dataIsLoaded}

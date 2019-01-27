@@ -19,11 +19,10 @@ export class Controls extends Component {
     let { isActive, active } = this.state
     return categories.map((category, i) => {
       return <button  active={isActive} 
-                      className={ active === category ? 'active' : 'inactive' }
+                      className={ active === category ? 'pressed' : 'notpressed' }
                       key={i}     
                       name={`${category}`} 
                       onClick={this.passCategory}>{`${category}`}</button>
-    })
-
+    }) 
   }
 }

@@ -1,7 +1,15 @@
 .Controls {
-  color: red;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
 }
 
-.active {
-  background-color: blue;
+.pressed {
+  background-color: $tertiary-color;
+}
+
+.notpressed,
+.pressed {
+  display: inline-block;
+  height: 50px;
 }

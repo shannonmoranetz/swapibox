@@ -17,7 +17,7 @@ export class Card extends Component {
   }
 
   checkFavoriteStatus = () => {
-    let { item } = this.props
+    let { item } = this.props;
     let { isFavorited } = this.state
     this.setState({ isFavorited: !isFavorited })
     if (isFavorited === false) {
@@ -96,7 +96,7 @@ export class Card extends Component {
   }
 
   render() {
-    let { category } = this.props
+    let { category } = this.props;
     if (category === 'people') {
       return this.returnPeople();
     } else if (category === 'planets') {

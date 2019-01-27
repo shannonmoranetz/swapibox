@@ -1,18 +1,22 @@
 .ScrollText {
-  color: purple;
+  background-color: $secondary-color;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  width: 60%;
 }
 
 .crawl {
-  color: black;
+  color: white;
   font-family: $body-font;
+  font-size: 17px;
 }
 
-.title {
-  color: black;
-  font-family: $heading-font;
-}
-
+.movie-title,
 .date {
-  color: black;
-  font-family: $body-font;
+  color: $tertiary-color;
+  font-family: $heading-font;
+  font-size: 20px;
 }

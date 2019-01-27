@@ -1,24 +1,59 @@
 .Card {
-  border: 1px solid black;
+  border: 6px solid #A2B4EF;
+  border-radius: 5px;
+  width: 350px;
+  margin: 20px;
+  box-shadow: 4px 4px 15px white;
+  background-color: $card-background;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 5px solid #A2B4EF;
+  background-color: $card-top;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .name {
-  color: black;
+  color: #515151;
   font-family: $heading-font;
+  padding-left: 10px;
+  font-size: 25px;
 }
 
 .data {
   font-family: $body-font;
+  padding-left: 10px;
+  font-size: 20px;
+  text-align: center;
+  margin: 10px 0px 10px 0px;
 }
 
 .subdata {
   font-family: $body-font;
+  list-style: none;
+  text-align: center;
+  margin-top: 5px;
 }
 
 .fas {
-  color: pink;
+  color: #B9A1ED;
+  font-size: 40px;
+  display: flex;
+  width: 50px;
+  align-items: center;
 }
 
 .far {
-  color: pink;
+  color: #B9A1ED;
+  font-size: 40px;
+  display: flex;
+  width: 50px;
+  align-items: center;
 }

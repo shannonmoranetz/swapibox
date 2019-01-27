@@ -31,13 +31,17 @@ export class Card extends Component {
     let { item } = this.props;
     return (
       <div className="Card">
-         <div className={ this.state.isFavorited === true ? 'fas fa-heart' : 'far fa-heart' }  
+        <div className="card-top">
+          <p className="name">{item.person}</p>
+          <div  className={ this.state.isFavorited === true ? 'fas fa-heart' : 'far fa-heart' }  
                 onClick={this.checkFavoriteStatus}></div>
-        <p className="name">{item.person}</p>
-        <p className="data">Homeworld: {item.homeworld}</p>
-        <p className="data">Population: {item.population}</p>
-        <p className="data">Species: {item.species}</p>
-        <p className="data">Language: {item.language}</p>
+        </div>
+        <div className="card-bottom">
+          <p className="data">Homeworld: {item.homeworld}</p>
+          <p className="data">Population: {item.population}</p>
+          <p className="data">Species: {item.species}</p>
+          <p className="data">Language: {item.language}</p>
+        </div>
       </div>
     )
   }
@@ -46,13 +50,17 @@ export class Card extends Component {
     let { item } = this.props;
     return (
       <div className="Card">
-        <div className={ this.state.isFavorited === true ? 'fas fa-heart' : 'far fa-heart' }  
+        <div className="card-top">
+          <p className="name">{item.planet}</p>
+          <div  className={ this.state.isFavorited === true ? 'fas fa-heart' : 'far fa-heart' }  
                 onClick={this.checkFavoriteStatus}></div>
-        <p className="name">{item.planet}</p>
-        <p className="data">Terrain: {item.terrain}</p>
-        <p className="data">Population: {item.population}</p>
-        <p className="data">Climate: {item.climate}</p>
-        <ul className="data">Residents: {this.returnPlanetResidents()} </ul>
+        </div>
+        <div className="card-bottom">
+          <p className="data">Terrain: {item.terrain}</p>
+          <p className="data">Population: {item.population}</p>
+          <p className="data">Climate: {item.climate}</p>
+          <ul className="data">Residents: {this.returnPlanetResidents()} </ul>
+        </div>
       </div>
     )
   }
@@ -72,12 +80,16 @@ export class Card extends Component {
     let { item } = this.props;
     return (
       <div className="Card">
-        <div className={ this.state.isFavorited === true ? 'fas fa-heart' : 'far fa-heart' }  
+        <div className="card-top">
+          <p className="name">{item.name}</p>
+          <div  className={ this.state.isFavorited === true ? 'fas fa-heart' : 'far fa-heart' }  
                 onClick={this.checkFavoriteStatus}></div>
-        <p className="name">{item.name}</p>
-        <p className="data">Model: {item.model}</p>
-        <p className="data">Class: {item.class}</p>
-        <p className="data">Passengers: {item.passengers}</p>
+        </div>
+        <div className="card-bottom">
+          <p className="data">Model: {item.model}</p>
+          <p className="data">Class: {item.class}</p>
+          <p className="data">Passengers: {item.passengers}</p>
+        </div>
       </div>
     )
   }

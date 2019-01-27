@@ -1,7 +1,8 @@
-.CardContainer {
-  color: blue;
-}
-
 .card-list {
-  color: black;
+  margin: 50px auto;
+  list-style: none;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
